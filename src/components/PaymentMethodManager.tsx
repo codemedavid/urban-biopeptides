@@ -69,11 +69,8 @@ const PaymentMethodManager: React.FC<PaymentMethodManagerProps> = ({ onBack }) =
       return;
     }
     
-    // QR code is optional but warn if missing
-    if (!formData.qr_code_url || formData.qr_code_url.trim() === '') {
-      const proceed = confirm('No QR code image provided. Continue without QR code?');
-      if (!proceed) return;
-    }
+    // QR code is optional - if missing, a placeholder will be used
+    // (Database requires NOT NULL, so we use a placeholder image)
 
     // Validate ID format (kebab-case)
     const idRegex = /^[a-z0-9]+(-[a-z0-9]+)*$/;

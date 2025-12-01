@@ -63,14 +63,20 @@ export const usePaymentMethods = () => {
 
   const addPaymentMethod = async (method: Omit<PaymentMethod, 'created_at' | 'updated_at'>) => {
     try {
-      // Normalize qr_code_url: undefined/null/empty string → empty string (or placeholder)
-      const qrCodeUrl = method.qr_code_url?.trim() || '';
+      // Normalize qr_code_url: undefined/null/empty string → placeholder URL
+      // Database requires NOT NULL, so we use a placeholder if empty
+      let qrCodeUrl = method.qr_code_url?.trim() || '';
+      if (!qrCodeUrl || qrCodeUrl === '') {
+        // Use a placeholder image URL if no QR code is provided
+        qrCodeUrl = 'https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop';
+      }
       
       console.log('📤 Adding payment method:', { 
         id: method.id, 
         name: method.name,
         qr_code_url: qrCodeUrl,
-        qr_code_url_length: qrCodeUrl.length
+        qr_code_url_length: qrCodeUrl.length,
+        is_placeholder: qrCodeUrl.includes('pexels.com')
       });
       
       const { data, error: insertError } = await supabase
@@ -80,7 +86,7 @@ export const usePaymentMethods = () => {
           name: method.name,
           account_number: method.account_number,
           account_name: method.account_name,
-          qr_code_url: qrCodeUrl, // Always explicitly set
+          qr_code_url: qrCodeUrl, // Always explicitly set (never empty)
           active: method.active,
           sort_order: method.sort_order
         })
@@ -89,7 +95,21 @@ export const usePaymentMethods = () => {
 
       if (insertError) {
         console.error('❌ Supabase insert error:', insertError);
-        throw insertError;
+        console.error('❌ Error code:', insertError.code);
+        console.error('❌ Error message:', insertError.message);
+        console.error('❌ Error details:', JSON.stringify(insertError, null, 2));
+        
+        // Provide more helpful error message
+        let errorMessage = insertError.message || 'Unknown error';
+        if (insertError.code === '42501' || insertError.message?.includes('permission') || insertError.message?.includes('policy')) {
+          errorMessage = 'Permission denied. Check Row Level Security (RLS) policies for the payment_methods table.';
+        } else if (insertError.message?.includes('null value') || insertError.message?.includes('NOT NULL')) {
+          errorMessage = 'Database error: Required field is missing. Please check all required fields are filled.';
+        } else if (insertError.message?.includes('duplicate key') || insertError.message?.includes('unique constraint')) {
+          errorMessage = `A payment method with ID "${method.id}" already exists. Please use a different ID.`;
+        }
+        
+        throw new Error(errorMessage);
       }
 
       console.log('✅ Payment method added:', { 
@@ -118,13 +138,17 @@ export const usePaymentMethods = () => {
       if (updates.sort_order !== undefined) updatePayload.sort_order = updates.sort_order;
       
       // ALWAYS explicitly handle qr_code_url if it's in updates
-      // Normalize: undefined/null → empty string, non-empty → trimmed string
+      // Normalize: undefined/null/empty → placeholder URL (database requires NOT NULL)
       if ('qr_code_url' in updates) {
         if (updates.qr_code_url !== undefined && updates.qr_code_url !== null) {
           const urlString = String(updates.qr_code_url).trim();
-          updatePayload.qr_code_url = urlString === '' ? '' : urlString;
+          // Use placeholder if empty (database requires NOT NULL)
+          updatePayload.qr_code_url = urlString === '' 
+            ? 'https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop'
+            : urlString;
         } else {
-          updatePayload.qr_code_url = '';
+          // Use placeholder if null/undefined
+          updatePayload.qr_code_url = 'https://images.pexels.com/photos/8867482/pexels-photo-8867482.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop';
         }
       }
       
@@ -147,8 +171,19 @@ export const usePaymentMethods = () => {
 
       if (updateError) {
         console.error('❌ Supabase update error:', updateError);
+        console.error('❌ Error code:', updateError.code);
+        console.error('❌ Error message:', updateError.message);
         console.error('❌ Error details:', JSON.stringify(updateError, null, 2));
-        throw updateError;
+        
+        // Provide more helpful error message
+        let errorMessage = updateError.message || 'Unknown error';
+        if (updateError.code === '42501' || updateError.message?.includes('permission') || updateError.message?.includes('policy')) {
+          errorMessage = 'Permission denied. Check Row Level Security (RLS) policies for the payment_methods table.';
+        } else if (updateError.message?.includes('null value') || updateError.message?.includes('NOT NULL')) {
+          errorMessage = 'Database error: Required field is missing. Please check all required fields are filled.';
+        }
+        
+        throw new Error(errorMessage);
       }
 
       console.log('✅ Payment method updated:', { 
