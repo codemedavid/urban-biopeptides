@@ -1,10 +1,10 @@
 import React from 'react';
 import { MessageCircle, Shield, Heart, HelpCircle, Calculator, FileText } from 'lucide-react';
-// import { useCOAPageSetting } from '../hooks/useCOAPageSetting';
+import { useCOAPageSetting } from '../hooks/useCOAPageSetting';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  //   const { coaPageEnabled } = useCOAPageSetting();
+  const { coaPageEnabled } = useCOAPageSetting();
 
   // Contact Links
   //   const whatsappMessage = encodeURIComponent('Hi! I would like to inquire about your products.');
@@ -43,13 +43,15 @@ const Footer: React.FC = () => {
               <Calculator className="w-4 h-4" />
               Calculator
             </a>
-            <a
-              href="/coa"
-              className="text-gray-500 hover:text-theme-accent transition-colors flex items-center gap-2 text-sm font-medium"
-            >
-              <FileText className="w-4 h-4" />
-              Lab Tests
-            </a>
+            {coaPageEnabled && (
+              <a
+                href="/coa"
+                className="text-gray-500 hover:text-theme-accent transition-colors flex items-center gap-2 text-sm font-medium"
+              >
+                <FileText className="w-4 h-4" />
+                Lab Tests
+              </a>
+            )}
             <a
               href="/faq"
               className="text-gray-500 hover:text-theme-accent transition-colors flex items-center gap-2 text-sm font-medium"

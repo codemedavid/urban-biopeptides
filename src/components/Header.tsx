@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useCOAPageSetting } from '../hooks/useCOAPageSetting';
+import { useCOAPageSetting } from '../hooks/useCOAPageSetting';
 import { ShoppingCart, Menu, X, MessageCircle, Calculator, FileText, HelpCircle } from 'lucide-react';
 
 interface HeaderProps {
@@ -10,7 +10,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  //   const { coaPageEnabled } = useCOAPageSetting();
+  const { coaPageEnabled } = useCOAPageSetting();
 
   // Contact Links
   //   const whatsappMessage = encodeURIComponent('Hi! I am interested in your products.');
@@ -64,13 +64,15 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
                   <Calculator className="w-4 h-4" />
                   Calculator
                 </a>
-                <a
-                  href="/coa"
-                  className="text-sm font-medium text-gray-600 hover:text-theme-accent transition-colors flex items-center gap-1"
-                >
-                  <FileText className="w-4 h-4" />
-                  Lab Tests
-                </a>
+                {coaPageEnabled && (
+                  <a
+                    href="/coa"
+                    className="text-sm font-medium text-gray-600 hover:text-theme-accent transition-colors flex items-center gap-1"
+                  >
+                    <FileText className="w-4 h-4" />
+                    Lab Tests
+                  </a>
+                )}
                 <a
                   href="/faq"
                   className="text-sm font-medium text-gray-600 hover:text-theme-accent transition-colors flex items-center gap-1"

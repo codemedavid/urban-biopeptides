@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Award, CheckCircle, X, ExternalLink, Download, Sparkles, ArrowLeft } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { useCOAPageSetting } from '../hooks/useCOAPageSetting';
 
 interface COAReport {
   id: string;
@@ -41,10 +42,29 @@ const COA: React.FC = () => {
     }
   };
 
-  if (loading) {
+  // ... (inside component)
+  const { coaPageEnabled, loading: settingLoading } = useCOAPageSetting();
+
+  // ... (after loading check)
+  if (settingLoading || loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-cyan-50 flex items-center justify-center">
         <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  if (!coaPageEnabled) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-cyan-50 flex items-center justify-center">
+        <div className="text-center p-8">
+          <Shield className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">Lab Reports Unavailable</h1>
+          <p className="text-gray-600 mb-6">The COA page is currently disabled.</p>
+          <a href="/" className="px-6 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors">
+            Return Home
+          </a>
+        </div>
       </div>
     );
   }
@@ -80,7 +100,7 @@ const COA: React.FC = () => {
             </h1>
 
             <p className="text-sm md:text-lg text-gray-600 mb-4 md:mb-6 px-4">
-              Tested by <strong className="text-sky-600">Janoshik Analytical</strong>
+              Tested by <strong className="text-sky-600">Janoshik + Chromate</strong>
             </p>
 
             <div className="flex flex-wrap justify-center gap-2 md:gap-4 text-xs md:text-sm px-2">
@@ -170,15 +190,27 @@ const COA: React.FC = () => {
                   </div>
 
                   <div className="space-y-2 md:space-y-3">
-                    <a
-                      href={`https://www.janoshik.com/verify/?key=${report.verification_key}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full flex items-center justify-center gap-1.5 md:gap-2 bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-500 hover:to-sky-600 text-white px-3 py-2 md:px-4 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
-                      <Shield className="w-4 h-4 md:w-5 md:h-5" />
-                      Verify on Janoshik
-                    </a>
+                    {(() => {
+                      const isJanoshik = !report.laboratory || report.laboratory.toLowerCase().includes('janoshik');
+                      const verificationUrl = isJanoshik
+                        ? `https://www.janoshik.com/verify/?key=${report.verification_key}`
+                        : 'https://chromate.org';
+
+                      return (
+                        <a
+                          href={verificationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`w-full flex items-center justify-center gap-1.5 md:gap-2 text-white px-3 py-2 md:px-4 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-medium transition-all duration-300 shadow-lg hover:shadow-xl ${isJanoshik
+                            ? 'bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-500 hover:to-sky-600'
+                            : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600'
+                            }`}
+                        >
+                          <Shield className="w-4 h-4 md:w-5 md:h-5" />
+                          {isJanoshik ? 'Verify on Janoshik' : 'Verify on Chromate'}
+                        </a>
+                      );
+                    })()}
 
                     <button
                       onClick={() => setSelectedImage(report.image_url)}
@@ -204,20 +236,31 @@ const COA: React.FC = () => {
                 </div>
               </div>
               <div className="flex-1">
-                <h3 className="text-base md:text-xl font-bold text-gray-800 mb-2 md:mb-3">About Janoshik Analytical</h3>
+                <h3 className="text-base md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Independent Laboratory Verification</h3>
                 <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
-                  Janoshik Analytical is a leading independent laboratory specializing in peptide analysis.
-                  Their state-of-the-art equipment provides accurate, reliable results you can trust.
+                  We partner with top-tier third-party laboratories like <strong>Janoshik Analytical</strong> and <strong>Chromate</strong> to ensure the highest quality standards.
+                  Each batch is rigorously tested for purity and concentration using HPLC and Mass Spectrometry.
                 </p>
-                <a
-                  href="https://www.janoshik.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-sky-600 hover:text-sky-700 font-medium"
-                >
-                  <span>Visit Janoshik</span>
-                  <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                </a>
+                <div className="flex gap-4">
+                  <a
+                    href="https://www.janoshik.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-sky-600 hover:text-sky-700 font-medium"
+                  >
+                    <span>Janoshik</span>
+                    <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                  </a>
+                  <a
+                    href="https://chromate.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-emerald-600 hover:text-emerald-700 font-medium"
+                  >
+                    <span>Chromate</span>
+                    <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
