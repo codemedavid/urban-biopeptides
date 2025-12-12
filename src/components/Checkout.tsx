@@ -210,17 +210,14 @@ Please confirm this order. Thank you!
       try {
         await navigator.clipboard.writeText(orderDetails);
         setCopied(true);
-        // Explicit instruction for user since Messenger doesn't support pre-fill
-        alert("✨ ORDER DETAILS COPIED! ✨\n\nPlease PASTE (Long Press > Paste) the order details into the Messenger chat that will open next.");
       } catch (err) {
         console.error('Failed to auto-copy:', err);
-        alert("Please manually copy the order details on the next screen.");
       }
 
       // Open contact method based on selection
       // Using m.me link with Page ID to open Messenger directly
       const contactUrl = contactMethod === 'messenger'
-        ? 'https://m.me/61555961135365'
+        ? `https://m.me/61555961135365?text=${encodeURIComponent(orderDetails)}`
         : null;
 
       if (contactUrl) {
@@ -276,7 +273,7 @@ Please confirm this order. Thank you!
 
   const handleOpenContact = () => {
     const contactUrl = contactMethod === 'messenger'
-      ? 'https://m.me/61555961135365'
+      ? `https://m.me/61555961135365?text=${encodeURIComponent(orderMessage)}`
       : null;
 
     if (contactUrl) {
