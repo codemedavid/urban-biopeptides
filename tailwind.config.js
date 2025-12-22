@@ -7,57 +7,104 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Minimalist SlimDose Theme
-        'theme-bg': '#FFFFFF',      // White
-        'theme-text': '#1A1A1A',    // Soft Black
-        'theme-accent': '#1A1A1A',  // Black for primary actions
-        'theme-secondary': '#F0E6D2', // Beige
+        // Modern Scientific Elegance Theme - Urban Biopeptides
+        'theme-bg': '#FFFFFF',        // Pure White
+        'theme-text': '#1F1F1F',      // Charcoal Black
+        'theme-accent': '#4EC6C6',    // Cool Aqua / Teal Blue
+        'theme-secondary': '#F3C6D3', // Soft Blush Pink
 
-        // Mapping standard colors to the new theme for compatibility
+        // Primary color palette
         primary: {
           50: '#FFFFFF',
-          100: '#F9F9F9',
-          200: '#F0E6D2', // Beige
-          300: '#E0D0B0',
-          400: '#C0B090',
-          500: '#1A1A1A', // Dark
-          600: '#151515',
-          700: '#101010',
-          800: '#0A0A0A',
-          900: '#000000',
+          100: '#F7F9FB',   // Soft Light Gray
+          200: '#E8EEF2',
+          300: '#D1D9E0',
+          400: '#9CA8B3',
+          500: '#4EC6C6',   // Teal (primary actions)
+          600: '#3EB5B5',
+          700: '#2EA3A3',
+          800: '#1E8A8A',
+          900: '#1F1F1F',   // Charcoal
         },
-        // Deprecating gold but mapping to secondary/accent to prevent breaks
+
+        // Pink accent palette (for highlights, buttons, accents)
+        pink: {
+          50: '#FDF7F9',
+          100: '#FBF0F3',
+          200: '#F8E1E8',
+          300: '#F3C6D3',   // Main Blush Pink
+          400: '#ED9BB3',
+          500: '#E57093',
+          600: '#D94D7A',
+          700: '#C13A65',
+          800: '#9E2F52',
+          900: '#7D2543',
+        },
+
+        // Teal/Aqua palette (for primary actions, links)
+        teal: {
+          50: '#F0FAFA',
+          100: '#E0F5F5',
+          200: '#B3E8E8',
+          300: '#80DADA',
+          400: '#4EC6C6',   // Main Aqua Teal
+          500: '#3EB5B5',
+          600: '#2EA3A3',
+          700: '#228888',
+          800: '#1A6B6B',
+          900: '#125050',
+        },
+
+        // Neutral grays
+        neutral: {
+          50: '#FFFFFF',
+          100: '#F7F9FB',
+          200: '#E8EEF2',
+          300: '#D1D9E0',
+          400: '#9CA8B3',
+          500: '#6B7B8A',
+          600: '#4E5A65',
+          700: '#3A434B',
+          800: '#272D33',
+          900: '#1F1F1F',
+        },
+
+        // Keep gold mapping for backward compatibility (maps to pink)
         gold: {
-          50: '#FBF8F1',
-          100: '#F7F1E3',
-          200: '#EBDCB9',
-          300: '#DFC790',
-          400: '#D4AF37', // Classic Metallic Gold
-          500: '#B89628',
-          600: '#A08020',
-          700: '#806018',
-          800: '#604812',
-          900: '#40300C',
+          50: '#FDF7F9',
+          100: '#FBF0F3',
+          200: '#F8E1E8',
+          300: '#F3C6D3',
+          400: '#ED9BB3',
+          500: '#E57093',
+          600: '#D94D7A',
+          700: '#C13A65',
+          800: '#9E2F52',
+          900: '#7D2543',
         },
-        accent: {
-          light: '#F0E6D2', // Beige
-          DEFAULT: '#00008B', // Dark Blue
-          dark: '#000066',
-          white: '#ffffff',
-          black: '#1A1A1A',
-          navy: '#00008B', // Dark Blue
-        },
+
+        // Keep navy mapping (maps to teal)
         navy: {
-          50: '#e6e6f5',
-          100: '#cccceb',
-          200: '#9999d6',
-          300: '#6666c2',
-          400: '#3333ad',
-          500: '#0000a0',
-          600: '#000099',
-          700: '#00008B', // Dark Blue (main)
-          800: '#000070',
-          900: '#000055', // Darkest
+          50: '#F0FAFA',
+          100: '#E0F5F5',
+          200: '#B3E8E8',
+          300: '#80DADA',
+          400: '#4EC6C6',
+          500: '#3EB5B5',
+          600: '#2EA3A3',
+          700: '#228888',
+          800: '#1A6B6B',
+          900: '#125050',
+        },
+
+        accent: {
+          light: '#F3C6D3',     // Blush Pink
+          DEFAULT: '#4EC6C6',   // Aqua Teal
+          dark: '#2EA3A3',
+          white: '#ffffff',
+          black: '#1F1F1F',
+          pink: '#F3C6D3',
+          teal: '#4EC6C6',
         },
       },
       fontFamily: {

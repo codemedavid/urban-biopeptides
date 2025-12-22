@@ -24,7 +24,7 @@ const AdminDashboard: React.FC = () => {
   const [loginError, setLoginError] = useState('');
   const { products, loading, addProduct, updateProduct, deleteProduct, refreshProducts } = useMenu();
   const { categories } = useCategories();
-  const [currentView, setCurrentView] = useState<'dashboard' | 'products' | 'add' | 'edit' | 'categories' | 'payments' | 'inventory' | 'orders' | 'shipping' | 'coa' | 'faq' | 'settings' | 'promo-codes' | 'guides'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'products' | 'add' | 'edit' | 'categories' | 'payments' | 'inventory' | 'orders' | 'shipping' | 'coa' | 'faq' | 'settings' | 'promo-codes'>('dashboard');
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [managingVariationsProductId, setManagingVariationsProductId] = useState<string | null>(null);
@@ -343,7 +343,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'Slimdose@Admin!2025') {
+    if (password === 'Urban@Admin!123') {
       setIsAuthenticated(true);
       localStorage.setItem('peptide_admin_auth', 'true');
       setLoginError('');
@@ -373,8 +373,8 @@ const AdminDashboard: React.FC = () => {
           <div className="text-center mb-6">
             <div className="relative mx-auto w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-theme-accent/30">
               <img
-                src="/assets/logo.jpeg"
-                alt="SlimDose Peptides"
+                src="/assets/logo.png"
+                alt="Urban Biopeptides"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -1085,10 +1085,10 @@ const AdminDashboard: React.FC = () => {
   if (currentView === 'promo-codes') {
     return (
       <div className="min-h-screen bg-gray-50 p-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full max-w-full px-2 sm:px-4">
           <button
             onClick={() => setCurrentView('dashboard')}
-            className="mb-4 text-gray-600 hover:text-navy-900 flex items-center gap-2"
+            className="mb-4 text-gray-600 hover:text-teal-600 flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
@@ -1097,11 +1097,6 @@ const AdminDashboard: React.FC = () => {
         </div>
       </div>
     );
-  }
-
-  // Smart Guides View
-  if (currentView === 'guides') {
-    return <GuideManager />;
   }
 
   // Settings View
@@ -1150,14 +1145,14 @@ const AdminDashboard: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <div className="w-9 h-9 rounded-full overflow-hidden border border-navy-900/20">
                   <img
-                    src="/assets/logo.jpeg"
-                    alt="SlimDose Peptides"
+                    src="/assets/logo.png"
+                    alt="Urban Biopeptides"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
                   <h1 className="text-base font-bold text-theme-text">
-                    SlimDose Peptides
+                    Urban Biopeptides
                   </h1>
                   <p className="text-xs text-gray-500">
                     Admin Dashboard
@@ -1346,15 +1341,6 @@ const AdminDashboard: React.FC = () => {
                   <span className="text-sm font-medium text-gray-900">Promo Codes</span>
                 </button>
                 <button
-                  onClick={() => setCurrentView('guides')}
-                  className="w-full flex items-center gap-3 p-2 text-left hover:bg-gray-50 rounded-lg transition-all"
-                >
-                  <div className="p-1.5 bg-purple-50 rounded-lg">
-                    <BookOpen className="h-4 w-4 text-purple-600" />
-                  </div>
-                  <span className="text-sm font-medium text-gray-900">Peptalk</span>
-                </button>
-                <button
                   onClick={() => setCurrentView('settings')}
                   className="w-full flex items-center gap-3 p-2 text-left hover:bg-gray-50 rounded-lg transition-all"
                 >
@@ -1393,7 +1379,7 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCOAPageSetting } from '../hooks/useCOAPageSetting';
-import { ShoppingCart, Menu, X, MessageCircle, Calculator, FileText, HelpCircle, Truck, BookOpen } from 'lucide-react';
+import { ShoppingCart, Menu, X, MessageCircle, Calculator, FileText, HelpCircle, Truck } from 'lucide-react';
 
 interface HeaderProps {
   cartItemsCount: number;
@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
 
   return (
     <>
-      <header className="bg-white sticky top-0 z-50 border-b-4 border-navy-900 shadow-sm">
+      <header className="bg-white sticky top-0 z-50 border-b-4 border-teal-400 shadow-sm">
         <div className="container mx-auto px-4 md:px-6 py-3 md:py-4">
           <div className="flex items-center justify-between gap-4">
             {/* Logo and Brand */}
@@ -23,17 +23,17 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
               className="flex items-center space-x-3 hover:opacity-80 transition-all group min-w-0 flex-1 max-w-[calc(100%-130px)] sm:max-w-none sm:flex-initial"
             >
               <div className="relative flex-shrink-0">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-gray-200">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-teal-400">
                   <img
-                    src="/assets/logo.jpeg"
-                    alt="SlimDose Peptides"
+                    src="/assets/logo.png"
+                    alt="Urban Biopeptides"
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
               <div className="text-left min-w-0 flex-1">
                 <h1 className="text-lg sm:text-xl font-bold text-theme-text leading-tight whitespace-nowrap overflow-hidden text-ellipsis tracking-tight">
-                  SlimDose Peptides
+                  Urban Biopeptides
                 </h1>
                 <p className="text-xs text-gray-500 font-medium flex items-center gap-1">
                   <span className="whitespace-nowrap overflow-hidden text-ellipsis">
@@ -84,17 +84,10 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
                   FAQ
                 </a>
                 <a
-                  href="/peptalk"
-                  className="text-sm font-medium text-gray-600 hover:text-theme-accent transition-colors flex items-center gap-1"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  Peptalk
-                </a>
-                <a
-                  href="https://t.me/+kdn_GOqZXxI1Y2Jl"
+                  href="https://invite.viber.com/?g2=AQA83a2VbX8Bm1XR1A2vDtwXP2k1Dib%2BpjLayM9NMD8DGWxv9%2BgEFrxri%2FcHV%2Boq"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-gray-600 hover:text-[#0088cc] transition-colors flex items-center gap-1"
+                  className="text-sm font-medium text-gray-600 hover:text-[#7360f2] transition-colors flex items-center gap-1"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Join Community
@@ -108,7 +101,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
               >
                 <ShoppingCart className="w-6 h-6" />
                 {cartItemsCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-theme-secondary text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="absolute top-0 right-0 bg-pink-300 text-gray-900 text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                     {cartItemsCount}
                   </span>
                 )}
@@ -129,111 +122,104 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
             </div>
           </div>
         </div>
-      </header>
+      </header >
 
       {/* Mobile Navigation Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-[60]">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-navy-900/50 backdrop-blur-sm transition-opacity"
-            onClick={() => setMobileMenuOpen(false)}
-          />
+      {
+        mobileMenuOpen && (
+          <div className="md:hidden fixed inset-0 z-[60]">
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-teal-900/40 backdrop-blur-sm transition-opacity"
+              onClick={() => setMobileMenuOpen(false)}
+            />
 
-          {/* Sidebar Drawer */}
-          <div
-            className="absolute top-0 right-0 bottom-0 w-[280px] bg-white shadow-2xl border-l-4 border-navy-900 flex flex-col animate-in slide-in-from-right duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Drawer Header */}
-            <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-white">
-              <span className="font-bold text-lg text-navy-900">Menu</span>
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 -mr-2 text-gray-500 hover:text-navy-900 transition-colors rounded-full hover:bg-gray-100"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            {/* Navigation Items */}
-            <nav className="flex-1 overflow-y-auto p-4 bg-white">
-              <div className="flex flex-col space-y-2">
+            {/* Sidebar Drawer */}
+            <div
+              className="absolute top-0 right-0 bottom-0 w-[280px] bg-white shadow-2xl border-l-4 border-teal-400 flex flex-col animate-in slide-in-from-right duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-white">
+                <span className="font-bold text-lg text-teal-700">Menu</span>
                 <button
-                  onClick={() => {
-                    onMenuClick();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 -mr-2 text-gray-500 hover:text-teal-600 transition-colors rounded-full hover:bg-teal-50"
                 >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <span className="w-5 h-5 text-gold-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                    </span>
-                  </div>
-                  Products
+                  <X className="w-6 h-6" />
                 </button>
-                <a
-                  href="/track-order"
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <Truck className="w-5 h-5 text-gold-500" />
-                  </div>
-                  Track Order
-                </a>
-                <a
-                  href="/calculator"
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <Calculator className="w-5 h-5 text-gold-500" />
-                  </div>
-                  Peptide Calculator
-                </a>
-                <a
-                  href="/coa"
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <FileText className="w-5 h-5 text-gold-500" />
-                  </div>
-                  Lab Tests (COA)
-                </a>
-                <a
-                  href="/faq"
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <HelpCircle className="w-5 h-5 text-gold-500" />
-                  </div>
-                  FAQ
-                </a>
-                <a
-                  href="/peptalk"
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <BookOpen className="w-5 h-5 text-gold-500" />
-                  </div>
-                  Peptalk
-                </a>
-                <a
-                  href="https://t.me/+kdn_GOqZXxI1Y2Jl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <MessageCircle className="w-5 h-5 text-gold-500" />
-                  </div>
-                  Join Community
-                </a>
               </div>
-            </nav>
+
+              {/* Navigation Items */}
+              <nav className="flex-1 overflow-y-auto p-4 bg-white">
+                <div className="flex flex-col space-y-2">
+                  <button
+                    onClick={() => {
+                      onMenuClick();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-all group"
+                  >
+                    <div className="p-2 rounded-lg bg-pink-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-teal-300 transition-all">
+                      <span className="w-5 h-5 text-pink-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                      </span>
+                    </div>
+                    Products
+                  </button>
+                  <a
+                    href="/track-order"
+                    className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-all group"
+                  >
+                    <div className="p-2 rounded-lg bg-teal-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-teal-300 transition-all">
+                      <Truck className="w-5 h-5 text-pink-400" />
+                    </div>
+                    Track Order
+                  </a>
+                  <a
+                    href="/calculator"
+                    className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-all group"
+                  >
+                    <div className="p-2 rounded-lg bg-teal-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-teal-300 transition-all">
+                      <Calculator className="w-5 h-5 text-pink-400" />
+                    </div>
+                    Peptide Calculator
+                  </a>
+                  <a
+                    href="/coa"
+                    className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-all group"
+                  >
+                    <div className="p-2 rounded-lg bg-teal-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-teal-300 transition-all">
+                      <FileText className="w-5 h-5 text-pink-400" />
+                    </div>
+                    Lab Tests (COA)
+                  </a>
+                  <a
+                    href="/faq"
+                    className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-all group"
+                  >
+                    <div className="p-2 rounded-lg bg-teal-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-teal-300 transition-all">
+                      <HelpCircle className="w-5 h-5 text-pink-400" />
+                    </div>
+                    FAQ
+                  </a>
+                  <a
+                    href="https://invite.viber.com/?g2=AQA83a2VbX8Bm1XR1A2vDtwXP2k1Dib%2BpjLayM9NMD8DGWxv9%2BgEFrxri%2FcHV%2Boq"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-all group"
+                  >
+                    <div className="p-2 rounded-lg bg-teal-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-teal-300 transition-all">
+                      <MessageCircle className="w-5 h-5 text-pink-400" />
+                    </div>
+                    Join Community
+                  </a>
+                </div>
+              </nav>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
     </>
   );
 };

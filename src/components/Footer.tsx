@@ -17,16 +17,16 @@ const Footer: React.FC = () => {
 
           {/* Brand Section */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-100">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-teal-400">
               <img
-                src="/assets/logo.jpeg"
-                alt="SlimDose Peptides"
+                src="/assets/logo.png"
+                alt="Urban Biopeptides"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="text-left">
               <div className="font-bold text-theme-text text-lg tracking-tight">
-                SlimDose Peptides
+                Urban Biopeptides
               </div>
               <div className="text-xs text-gray-500">Premium Peptide Solutions</div>
             </div>
@@ -67,10 +67,10 @@ const Footer: React.FC = () => {
               FAQ
             </a>
             <a
-              href="https://t.me/+kdn_GOqZXxI1Y2Jl"
+              href="https://invite.viber.com/?g2=AQA83a2VbX8Bm1XR1A2vDtwXP2k1Dib%2BpjLayM9NMD8DGWxv9%2BgEFrxri%2FcHV%2Boq"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-[#0088cc] transition-colors flex items-center gap-2 text-sm font-medium"
+              className="text-gray-500 hover:text-[#7360f2] transition-colors flex items-center gap-2 text-sm font-medium"
             >
               <MessageCircle className="w-4 h-4" />
               Join Community
@@ -83,8 +83,8 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-100 pt-6 text-center">
           <p className="text-xs text-gray-400 flex items-center justify-center gap-1">
             Made with
-            <Heart className="w-3 h-3 text-theme-secondary fill-theme-secondary" />
-            © {currentYear} SlimDose Peptides.
+            <Heart className="w-3 h-3 text-pink-400 fill-pink-400" />
+            © {currentYear} Urban Biopeptides.
           </p>
         </div>
       </div>

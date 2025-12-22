@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, RotateCcw, Syringe, Droplets, FlaskConical, AlertTriangle } from 'lucide-react';
-import Header from './Header';
+import { Calculator, RotateCcw, Syringe, Droplets, FlaskConical, AlertTriangle, ArrowLeft } from 'lucide-react';
 import Footer from './Footer';
-import { useCart } from '../hooks/useCart';
 
 interface SyringeOption {
     id: string;
@@ -28,7 +26,7 @@ const PeptideCalculator: React.FC = () => {
     const [resultUnits, setResultUnits] = useState<number | null>(null);
     const [resultMgPerUnit, setResultMgPerUnit] = useState<number | null>(null);
 
-    const cart = useCart();
+
 
     useEffect(() => {
         calculate();
@@ -78,20 +76,28 @@ const PeptideCalculator: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-theme-bg font-inter flex flex-col">
-            <Header
-                cartItemsCount={cart.getTotalItems()}
-                onCartClick={() => window.location.href = '/'}
-                onMenuClick={() => window.location.href = '/'}
-            />
+            {/* Custom Header with Back Button */}
+            <div className="bg-white border-b-4 border-teal-400 sticky top-0 z-10 shadow-sm">
+                <div className="container mx-auto px-4 py-4">
+                    <div className="flex items-center gap-4">
+                        <a
+                            href="/"
+                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors group"
+                        >
+                            <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-teal-600" />
+                        </a>
+                        <div className="flex items-center gap-2">
+                            <Calculator className="w-6 h-6 text-pink-400" />
+                            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Peptide Calculator</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
                 <div className="max-w-3xl mx-auto">
                     {/* Header Section */}
                     <div className="text-center mb-10">
-                        <div className="inline-flex items-center justify-center p-3 bg-navy-50 rounded-full mb-4">
-                            <Calculator className="w-8 h-8 text-navy-900" />
-                        </div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-theme-text mb-4">Peptide Calculator</h1>
                         <p className="text-gray-500 max-w-lg mx-auto">
                             Easily calculate your peptide dosage. Enter your vial size, the amount of bacteriostatic water added, and your desired dose.
                         </p>

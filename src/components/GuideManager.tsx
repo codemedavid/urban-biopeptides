@@ -47,7 +47,7 @@ export default function GuideManager() {
         preview: '',
         content: '',
         cover_image: null,
-        author: 'SlimDose Team',
+        author: 'Urban Biopeptides Team',
         published_date: new Date().toISOString().split('T')[0],
         display_order: 0,
         is_enabled: true
@@ -97,7 +97,7 @@ export default function GuideManager() {
                 preview: '',
                 content: '',
                 cover_image: null,
-                author: 'SlimDose Team',
+                author: 'Urban Biopeptides Team',
                 published_date: new Date().toISOString().split('T')[0],
                 display_order: maxOrder + 1,
                 is_enabled: true
@@ -114,7 +114,7 @@ export default function GuideManager() {
             preview: '',
             content: '',
             cover_image: null,
-            author: 'SlimDose Team',
+            author: 'Urban Biopeptides Team',
             published_date: new Date().toISOString().split('T')[0],
             display_order: 0,
             is_enabled: true
@@ -214,21 +214,21 @@ export default function GuideManager() {
             {/* Header */}
             <div className="bg-white shadow-md border-b border-gray-200">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="flex items-center justify-between h-14">
-                        <div className="flex items-center space-x-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-3 gap-3">
+                        <div className="flex items-center gap-2">
                             <a
                                 href="/admin"
                                 className="text-gray-700 hover:text-theme-accent transition-colors flex items-center gap-1 group"
                             >
                                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                                <span className="text-sm">Dashboard</span>
+                                <span className="text-sm hidden sm:inline">Dashboard</span>
                             </a>
-                            <span className="text-gray-400">•</span>
+                            <span className="text-gray-400 hidden sm:inline">•</span>
                             <h1 className="text-base font-bold text-navy-900">Article Manager</h1>
                         </div>
                         <button
                             onClick={() => openModal()}
-                            className="flex items-center gap-2 bg-theme-accent text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-md text-sm"
+                            className="flex items-center justify-center gap-2 bg-theme-accent text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-md text-sm w-full sm:w-auto"
                         >
                             <Plus className="w-4 h-4" />
                             New Article

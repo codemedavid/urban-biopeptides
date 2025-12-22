@@ -37,7 +37,7 @@ const FAQ: React.FC = () => {
         ? faqs.filter(faq => faq.category === activeCategory)
         : faqs;
 
-    const whatsappUrl = `https://wa.me/639062349763?text=${encodeURIComponent('Hi! I have a question about your products.')}`;
+    const whatsappUrl = `https://wa.me/85585317884?text=${encodeURIComponent('Hi! I have a question about your products.')}`;
 
     if (loading) {
         return (
@@ -50,18 +50,18 @@ const FAQ: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
-            <div className="bg-white border-b-4 border-navy-900 sticky top-0 z-10 shadow-sm">
+            <div className="bg-white border-b-4 border-teal-400 sticky top-0 z-10 shadow-sm">
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center gap-4">
                         <a
                             href="/"
                             className="p-2 hover:bg-gray-100 rounded-lg transition-colors group"
                         >
-                            <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-navy-900" />
+                            <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-teal-500" />
                         </a>
                         <div className="flex items-center gap-2">
-                            <HelpCircle className="w-6 h-6 text-gold-500" />
-                            <h1 className="text-xl md:text-2xl font-bold text-navy-900">Frequently Asked Questions</h1>
+                            <HelpCircle className="w-6 h-6 text-pink-400" />
+                            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Frequently Asked Questions</h1>
                         </div>
                     </div>
                 </div>
@@ -73,8 +73,8 @@ const FAQ: React.FC = () => {
                     <button
                         onClick={() => setActiveCategory(null)}
                         className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all border shadow-sm ${activeCategory === null
-                            ? 'bg-navy-900 text-white border-navy-900 shadow-md transform scale-105'
-                            : 'bg-white text-navy-900 border-navy-900 hover:bg-navy-50'
+                            ? 'bg-teal-500 text-white border-teal-500 shadow-md transform scale-105'
+                            : 'bg-white text-gray-700 border-teal-400 hover:bg-teal-50'
                             }`}
                     >
                         All
@@ -84,11 +84,11 @@ const FAQ: React.FC = () => {
                             key={category}
                             onClick={() => setActiveCategory(category)}
                             className={`px-4 py-2.5 rounded-full text-xs md:text-sm font-bold transition-all flex items-center gap-2 border shadow-sm ${activeCategory === category
-                                ? 'bg-navy-900 text-white border-navy-900 shadow-md transform scale-105'
-                                : 'bg-white text-gray-600 border-navy-900 hover:bg-navy-50 hover:text-navy-900'
+                                ? 'bg-teal-500 text-white border-teal-500 shadow-md transform scale-105'
+                                : 'bg-white text-gray-600 border-teal-400 hover:bg-teal-50 hover:text-teal-600'
                                 }`}
                         >
-                            <span className={activeCategory === category ? 'text-gold-400' : 'text-gold-500'}>
+                            <span className={activeCategory === category ? 'text-pink-300' : 'text-pink-400'}>
                                 {categoryIcons[category]}
                             </span>
                             {category}
@@ -100,11 +100,11 @@ const FAQ: React.FC = () => {
                 {(activeCategory ? [activeCategory] : categories).map(category => (
                     <div key={category} className="mb-10">
                         {/* Section Header */}
-                        <div className="flex items-center gap-3 mb-6 px-4 py-3 rounded-lg border border-navy-900 bg-white shadow-sm w-full">
-                            <span className="text-gold-500">
+                        <div className="flex items-center gap-3 mb-6 px-4 py-3 rounded-lg border border-teal-400 bg-white shadow-sm w-full">
+                            <span className="text-pink-400">
                                 {categoryIcons[category] || <HelpCircle className="w-5 h-5" />}
                             </span>
-                            <h2 className="font-bold text-sm md:text-base uppercase tracking-wide text-navy-900">{category}</h2>
+                            <h2 className="font-bold text-sm md:text-base uppercase tracking-wide text-gray-900">{category}</h2>
                         </div>
 
                         <div className="space-y-4">
@@ -119,13 +119,13 @@ const FAQ: React.FC = () => {
                                             onClick={() => toggleItem(faq.id)}
                                             className="w-full px-6 py-5 flex items-start justify-between text-left group gap-4"
                                         >
-                                            <span className="font-bold text-navy-900 text-base md:text-lg group-hover:text-blue-800 transition-colors leading-snug">
+                                            <span className="font-bold text-gray-900 text-base md:text-lg group-hover:text-teal-600 transition-colors leading-snug">
                                                 {faq.question}
                                             </span>
                                             {openItems.has(faq.id) ? (
                                                 <ChevronUp className="w-5 h-5 text-gray-400 flex-shrink-0 mt-1" />
                                             ) : (
-                                                <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-navy-900 flex-shrink-0 transition-colors mt-1" />
+                                                <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-teal-500 flex-shrink-0 transition-colors mt-1" />
                                             )}
                                         </button>
                                         {openItems.has(faq.id) && (
@@ -143,8 +143,8 @@ const FAQ: React.FC = () => {
                 ))}
 
                 {/* Contact CTA */}
-                <div className="mt-12 bg-white rounded-2xl border border-navy-900/30 p-6 md:p-8 text-center shadow-lg">
-                    <h3 className="text-lg md:text-xl font-bold text-navy-900 mb-2">
+                <div className="mt-12 bg-white rounded-2xl border border-teal-400/30 p-6 md:p-8 text-center shadow-lg">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
                         Still have questions?
                     </h3>
                     <p className="text-gray-600 mb-6">
@@ -154,9 +154,9 @@ const FAQ: React.FC = () => {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-navy-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-navy-800 transition-colors shadow-md hover:shadow-lg"
+                        className="inline-flex items-center gap-2 bg-teal-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-600 transition-colors shadow-md hover:shadow-lg"
                     >
-                        <MessageCircle className="w-5 h-5 text-gold-400" />
+                        <MessageCircle className="w-5 h-5 text-pink-200" />
                         Chat on WhatsApp
                     </a>
                 </div>

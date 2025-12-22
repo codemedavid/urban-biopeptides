@@ -5,22 +5,30 @@
 @tailwind utilities;
 
 :root {
-  /* Minimalist SlimDose Theme */
+  /* Modern Scientific Elegance Theme - Urban Biopeptides */
   --theme-bg: #FFFFFF;
-  --theme-text: #1A1A1A;
-  --theme-accent: #1A1A1A;
-  --theme-secondary: #F0E6D2;
+  --theme-text: #1F1F1F;
+  --theme-accent: #4EC6C6;
+  /* Cool Aqua / Teal Blue */
+  --theme-secondary: #F3C6D3;
+  /* Soft Blush Pink */
 
-  --primary-black: #1A1A1A;
-  --primary-white: #ffffff;
+  --primary-black: #1F1F1F;
+  /* Charcoal Black */
+  --primary-white: #FFFFFF;
 
+  /* Neutral Palette */
   --gray-50: #FFFFFF;
-  --gray-100: #F9F9F9;
-  --gray-200: #F0E6D2;
-  /* Beige tint */
-  --gray-300: #E5E5E5;
-  --gray-500: #888888;
-  --gray-900: #1A1A1A;
+  --gray-100: #F7F9FB;
+  /* Soft Light Gray */
+  --gray-200: #E8EEF2;
+  --gray-300: #D1D9E0;
+  --gray-500: #6B7B8A;
+  --gray-900: #1F1F1F;
+
+  /* Accent Colors */
+  --blush-pink: #F3C6D3;
+  --aqua-teal: #4EC6C6;
 }
 
 * {
@@ -49,9 +57,9 @@ h6 {
   letter-spacing: -0.02em;
 }
 
-/* Minimalist Button Styles */
+/* Modern Scientific Elegance Button Styles */
 .btn-primary {
-  @apply bg-navy-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-navy-800 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  @apply bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-3 rounded-lg font-medium hover:from-teal-600 hover:to-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
 }
 
 .btn-secondary {
@@ -82,11 +90,11 @@ h6 {
 }
 
 .badge-gold {
-  @apply bg-theme-bg text-theme-secondary border border-theme-secondary;
+  @apply bg-pink-50 text-pink-600 border border-pink-200;
 }
 
 .badge-accent {
-  @apply bg-theme-accent bg-opacity-10 text-theme-accent border border-theme-accent border-opacity-20;
+  @apply bg-teal-50 text-teal-600 border border-teal-200;
 }
 
 .badge-black {

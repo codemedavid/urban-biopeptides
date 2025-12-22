@@ -13,8 +13,6 @@ import COA from './components/COA';
 import FAQ from './components/FAQ';
 import PeptideCalculator from './components/PeptideCalculator';
 import OrderTracking from './components/OrderTracking';
-import SmartGuide from './components/SmartGuide';
-import ArticleDetail from './components/ArticleDetail';
 import { useMenu } from './hooks/useMenu';
 // import { useCOAPageSetting } from './hooks/useCOAPageSetting';
 
@@ -107,8 +105,6 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/calculator" element={<PeptideCalculator />} />
         <Route path="/track-order" element={<OrderTracking />} />
-        <Route path="/peptalk" element={<SmartGuide />} />
-        <Route path="/peptalk/:id" element={<ArticleDetail />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </Router>

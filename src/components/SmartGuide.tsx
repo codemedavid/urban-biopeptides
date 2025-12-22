@@ -54,18 +54,18 @@ export default function SmartGuide() {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
-            <div className="bg-white border-b-4 border-navy-900 sticky top-0 z-10 shadow-sm">
+            <div className="bg-white border-b-4 border-teal-400 sticky top-0 z-10 shadow-sm">
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center gap-4">
                         <a
                             href="/"
                             className="p-2 hover:bg-gray-100 rounded-lg transition-colors group"
                         >
-                            <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-navy-900" />
+                            <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-teal-500" />
                         </a>
                         <div className="flex items-center gap-2">
-                            <BookOpen className="w-6 h-6 text-gold-500" />
-                            <h1 className="text-xl md:text-2xl font-bold text-navy-900">Peptalk</h1>
+                            <BookOpen className="w-6 h-6 text-pink-400" />
+                            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Peptalk</h1>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ export default function SmartGuide() {
                 {articles.length === 0 ? (
                     <div className="bg-white rounded-2xl p-12 text-center shadow-xl border border-gray-100">
                         <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                        <h3 className="text-2xl font-semibold text-navy-900 mb-2">
+                        <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                             No Articles Available Yet
                         </h3>
                         <p className="text-gray-600">
@@ -108,7 +108,7 @@ export default function SmartGuide() {
 
                                 {/* Card Content */}
                                 <div className="p-6">
-                                    <h3 className="text-lg font-bold text-navy-900 mb-3 line-clamp-2 group-hover:text-theme-accent transition-colors">
+                                    <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-teal-600 transition-colors">
                                         {article.title}
                                     </h3>
 
@@ -121,11 +121,11 @@ export default function SmartGuide() {
                                     {/* Meta Information */}
                                     <div className="flex flex-col gap-2 text-xs text-gray-500 mb-4">
                                         <div className="flex items-center gap-2">
-                                            <User className="w-3 h-3 text-gold-500" />
+                                            <User className="w-3 h-3 text-pink-400" />
                                             <span>{article.author}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <Calendar className="w-3 h-3 text-gold-500" />
+                                            <Calendar className="w-3 h-3 text-pink-400" />
                                             <span>{new Date(article.published_date).toLocaleDateString('en-US', {
                                                 year: 'numeric',
                                                 month: 'short',
@@ -135,7 +135,7 @@ export default function SmartGuide() {
                                     </div>
 
                                     {/* Read More */}
-                                    <div className="flex items-center gap-2 text-theme-accent font-semibold text-sm group-hover:gap-3 transition-all">
+                                    <div className="flex items-center gap-2 text-teal-500 font-semibold text-sm group-hover:gap-3 transition-all">
                                         <span>Read Article</span>
                                         <ChevronRight className="w-4 h-4" />
                                     </div>

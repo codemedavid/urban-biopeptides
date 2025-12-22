@@ -74,11 +74,11 @@ export default function ArticleDetail() {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
+            <div className="bg-white border-b-4 border-teal-400 sticky top-0 z-10 shadow-sm">
                 <div className="container mx-auto px-4 py-4">
                     <button
                         onClick={() => navigate('/peptalk')}
-                        className="flex items-center gap-2 text-gray-600 hover:text-navy-900 transition-colors group"
+                        className="flex items-center gap-2 text-gray-600 hover:text-teal-600 transition-colors group"
                     >
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                         <span className="font-medium">Back to Peptalk</span>
@@ -103,18 +103,18 @@ export default function ArticleDetail() {
                 <article className="bg-white rounded-2xl shadow-lg overflow-hidden">
                     {/* Article Header */}
                     <div className="p-8 md:p-12 border-b border-gray-200">
-                        <h1 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6 leading-tight">
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
                             {article.title}
                         </h1>
 
                         {/* Meta Information */}
                         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
                             <div className="flex items-center gap-2">
-                                <User className="w-4 h-4 text-gold-500" />
+                                <User className="w-4 h-4 text-pink-400" />
                                 <span>By {article.author}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Calendar className="w-4 h-4 text-gold-500" />
+                                <Calendar className="w-4 h-4 text-pink-400" />
                                 <span>{new Date(article.published_date).toLocaleDateString('en-US', {
                                     year: 'numeric',
                                     month: 'long',
@@ -139,7 +139,7 @@ export default function ArticleDetail() {
                     <div className="mt-8 text-center">
                         <button
                             onClick={() => navigate('/peptalk')}
-                            className="inline-flex items-center gap-2 bg-navy-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-navy-800 transition-colors shadow-md hover:shadow-lg"
+                            className="inline-flex items-center gap-2 bg-teal-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-600 transition-colors shadow-md hover:shadow-lg"
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Back to Peptalk

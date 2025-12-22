@@ -128,12 +128,12 @@ const PromoCodeManager: React.FC = () => {
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                    <Tag className="w-6 h-6 text-navy-900" />
+                    <Tag className="w-6 h-6 text-teal-600" />
                     Promo Codes
                 </h2>
                 <button
                     onClick={() => openModal()}
-                    className="flex items-center gap-2 bg-navy-900 text-white px-4 py-2 rounded-lg hover:bg-navy-800 transition-colors shadow-sm"
+                    className="flex items-center gap-2 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-500 transition-colors shadow-sm"
                 >
                     <Plus className="w-4 h-4" />
                     Create New Code
@@ -149,69 +149,75 @@ const PromoCodeManager: React.FC = () => {
                             placeholder="Search by code..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-navy-900 focus:border-transparent"
+                            className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                         />
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="w-full">
-                        <thead className="bg-gray-50 text-xs text-gray-500 uppercase font-bold tracking-wider text-left">
-                            <tr>
-                                <th className="px-6 py-3">Code</th>
-                                <th className="px-6 py-3">Discount</th>
-                                <th className="px-6 py-3">Status</th>
-                                <th className="px-6 py-3">Usage</th>
-                                <th className="px-6 py-3">Expiry</th>
-                                <th className="px-6 py-3 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100">
-                            {loading ? (
-                                <tr><td colSpan={6} className="p-8 text-center text-gray-500">Loading...</td></tr>
-                            ) : filteredCodes.length === 0 ? (
-                                <tr><td colSpan={6} className="p-8 text-center text-gray-500">No promo codes found.</td></tr>
-                            ) : (
-                                filteredCodes.map(code => (
-                                    <tr key={code.id} className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="px-6 py-4 font-bold text-navy-900">{code.code}</td>
-                                        <td className="px-6 py-4">
-                                            {code.discount_type === 'percentage'
-                                                ? `${code.discount_value}% OFF`
-                                                : `₱${code.discount_value.toLocaleString()} OFF`}
-                                            {code.min_purchase_amount > 0 &&
-                                                <span className="block text-xs text-gray-400">Min: ₱{code.min_purchase_amount.toLocaleString()}</span>}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button
-                                                onClick={() => toggleActive(code.id, code.active)}
-                                                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${code.active
-                                                        ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                                    }`}>
-                                                {code.active ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
-                                                {code.active ? 'Active' : 'Inactive'}
-                                            </button>
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-600">
-                                            {code.usage_count} / {code.usage_limit || '∞'}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-600">
-                                            {code.end_date ? new Date(code.end_date).toLocaleDateString() : 'No Expiry'}
-                                        </td>
-                                        <td className="px-6 py-4 flex justify-end gap-2">
-                                            <button onClick={() => openModal(code)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                {/* Mobile-friendly Card Layout */}
+                <div className="p-4">
+                    {loading ? (
+                        <div className="p-8 text-center text-gray-500">Loading...</div>
+                    ) : filteredCodes.length === 0 ? (
+                        <div className="p-8 text-center text-gray-500">No promo codes found.</div>
+                    ) : (
+                        <div className="space-y-4">
+                            {filteredCodes.map(code => (
+                                <div key={code.id} className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                                    {/* Header: Code & Actions */}
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="text-lg font-bold text-teal-600">{code.code}</span>
+                                        <div className="flex items-center gap-2">
+                                            <button onClick={() => openModal(code)} className="p-2 text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
                                                 <Edit2 className="w-4 h-4" />
                                             </button>
                                             <button onClick={() => handleDelete(code.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
+                                        </div>
+                                    </div>
+
+                                    {/* Discount Badge */}
+                                    <div className="mb-3">
+                                        <span className="inline-block bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm font-bold">
+                                            {code.discount_type === 'percentage'
+                                                ? `${code.discount_value}% OFF`
+                                                : `₱${code.discount_value.toLocaleString()} OFF`}
+                                        </span>
+                                        {code.min_purchase_amount > 0 && (
+                                            <span className="ml-2 text-xs text-gray-500">Min: ₱{code.min_purchase_amount.toLocaleString()}</span>
+                                        )}
+                                    </div>
+
+                                    {/* Details Grid */}
+                                    <div className="grid grid-cols-3 gap-3 text-sm">
+                                        <div>
+                                            <span className="block text-gray-400 text-xs uppercase font-medium mb-1">Status</span>
+                                            <button
+                                                onClick={() => toggleActive(code.id, code.active)}
+                                                className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium transition-colors ${code.active
+                                                    ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                                                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                                                    }`}>
+                                                {code.active ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
+                                                {code.active ? 'Active' : 'Inactive'}
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <span className="block text-gray-400 text-xs uppercase font-medium mb-1">Usage</span>
+                                            <span className="font-medium text-gray-700">{code.usage_count} / {code.usage_limit || '∞'}</span>
+                                        </div>
+                                        <div>
+                                            <span className="block text-gray-400 text-xs uppercase font-medium mb-1">Expiry</span>
+                                            <span className="font-medium text-gray-700">
+                                                {code.end_date ? new Date(code.end_date).toLocaleDateString() : 'Never'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -234,7 +240,7 @@ const PromoCodeManager: React.FC = () => {
                                 <input
                                     type="text"
                                     required
-                                    className="w-full px-4 py-2 border border-gray-200 rounded-lg uppercase placeholder-gray-400 focus:ring-2 focus:ring-navy-900 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-gray-200 rounded-lg uppercase placeholder-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                                     placeholder="e.g. SAVE100"
                                     value={formData.code}
                                     onChange={e => setFormData({ ...formData, code: e.target.value })}
@@ -310,7 +316,7 @@ const PromoCodeManager: React.FC = () => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-6 py-2 bg-navy-900 text-white rounded-lg font-bold hover:bg-navy-800 transition-colors shadow-lg shadow-navy-900/20"
+                                    className="px-6 py-2 bg-teal-600 text-white rounded-lg font-bold hover:bg-teal-500 transition-colors shadow-lg shadow-teal-600/20"
                                 >
                                     {editingCode ? 'Update Code' : 'Create Code'}
                                 </button>
