@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-teal-400">
               <img
-                src="/assets/logo.png"
+                src="/assets/logo.jpg"
                 alt="Urban Biopeptides"
                 className="w-full h-full object-cover"
               />
