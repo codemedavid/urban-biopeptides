@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
               <div className="relative flex-shrink-0">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-teal-400">
                   <img
-                    src="/assets/logo.jpg"
+                    src="/assets/logo.png"
                     alt="Urban Biopeptides"
                     className="w-full h-full object-cover"
                   />

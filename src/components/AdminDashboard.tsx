@@ -343,7 +343,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'Urban@Admin!123') {
+    if (password === 'biopeptide@admin!2025') {
       setIsAuthenticated(true);
       localStorage.setItem('peptide_admin_auth', 'true');
       setLoginError('');
@@ -373,7 +373,7 @@ const AdminDashboard: React.FC = () => {
           <div className="text-center mb-6">
             <div className="relative mx-auto w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-theme-accent/30">
               <img
-                src="/assets/logo.jpg"
+                src="/assets/logo.png"
                 alt="Urban Biopeptides"
                 className="w-full h-full object-cover"
               />
@@ -1145,7 +1145,7 @@ const AdminDashboard: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <div className="w-9 h-9 rounded-full overflow-hidden border border-navy-900/20">
                   <img
-                    src="/assets/logo.jpg"
+                    src="/assets/logo.png"
                     alt="Urban Biopeptides"
                     className="w-full h-full object-cover"
                   />
